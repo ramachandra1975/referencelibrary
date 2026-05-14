@@ -2234,5 +2234,16 @@ window.ckmSetKey   = (id,key) => ckmLock(id, key); // programmatic lock
 })();
 </script>
 <!-- ── END api-key-manager-snippet.html ── -->
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    const vault = JSON.parse(localStorage.getItem('forge_vault_v1') || '[]');
+    const antKey = vault.find(s => s.key && s.key.startsWith('sk-ant'));
+    if (antKey) {
+      document.getElementById('apiKeyInput').value = antKey.key;
+    }
+  } catch(e) {}
+});
+</script>
 </body>
 </html>
